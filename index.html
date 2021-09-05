@@ -5,35 +5,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+
     <title>TO-DO list</title>
+
+    <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <h1 class="title">To-Do list</h1>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">To-do List</h1>
 
-            <form class="form-search">
+            <form class="form form-search">
                 <input class="form-control" type="text" name="search" placeholder="Buscar to-do">
             </form>
-        </div>
-    </header>
+        </header>
 
-    <main>
-        <div class="container">
+        <main>
+
             <ul class="todos-container">
-                <li class="list-group-item">Assistir Breakin Bad</li>
-                <li class="list-group-item">Planejar aulas</li>
-                <li class="list-group-item">Fazer exercícios fisicos</li>
+                <li class="list-group-item">
+                    <span>Assistir Breakin Bad</span>
+                    <i class="far fa-trash-alt delete"></i>
+                </li>
+                <li class="list-group-item">
+                    <span>Planejar aulas</span>
+                    <i class="far fa-trash-alt delete"></i>
+                </li>
+                <li class="list-group-item">
+                    <span>Fazer exercícios fisicos</span>
+                    <i class="far fa-trash-alt delete"></i>
+                </li>
             </ul>
 
-            <form class="form-add-todo">
+            <form class=" form form-add-todo">
                 <label class="label-add" for="add">Adicionar to-do</label>
                 <input class="form-control" type="text" name="add" autofocus>
             </form>
-        </div>
 
-    </main>
+        </main>
+    </div>
 </body>
 
 </html>
