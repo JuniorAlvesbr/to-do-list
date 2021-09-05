@@ -63,6 +63,6 @@ body {
     justify-content: space-between;
 }
 
-.todos-container > .list-group-item .far {
+.todos-container > .list-group-item .delete {
     cursor: pointer;
 }
