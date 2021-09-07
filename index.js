@@ -1,3 +1,4 @@
+const $formSearch = document.querySelector('.form-search')
 const $formAddTodo = document.querySelector('.form-add-todo')
 const $todosContainer = document.querySelector('.todos-container')
 
@@ -37,4 +38,19 @@ const createTodoList =  event => {
     }
 }
 
+const formSearch = event => {
+    if (event.key === 'Enter') {
+        event.preventDefault()
+        const search = $formSearch.search.value
+        const searchArray = todoList.indexOf(search)
+
+        if (searchArray > -1) {
+            const newSearchArray = [todoList[searchArray]]
+            console.log(newSearchArray)
+            addTodoListInHTML(newSearchArray)
+        }
+    }
+}
+
 $formAddTodo.addEventListener('keypress', createTodoList)
+$formSearch.addEventListener('keypress', formSearch)
