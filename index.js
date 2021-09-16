@@ -2,7 +2,17 @@ const $formSearch = document.querySelector('.form-search')
 const $formAddTodo = document.querySelector('.form-add-todo')
 const $todosContainer = document.querySelector('.todos-container')
 
-const todoList = []
+const todoList = ["Assistir Breakin Bad", "Planejar aulas", "Fazer exercícios fisicos"]
+
+const addItemToTodoList =  event => {
+    event.preventDefault()
+    const todo = event.target.add.value.trim()
+    
+    todoList.push(todo)
+    addTodoListInHTML(todoList)
+
+    event.target.reset()
+}
 
 function removeItemList(event) {
     const todo = event.target.previousElementSibling.innerHTML
@@ -23,34 +33,18 @@ function addTodoListInHTML(array) {
         )
     )
     
-        $todosContainer.innerHTML = htmlList.join(' ')
-}
-
-const createTodoList =  event => {
-    if (event.key === "Enter") {
-        event.preventDefault()
-
-        const todo = $formAddTodo.add.value
-
-        todoList.push(todo)
-               
-        addTodoListInHTML(todoList)
-    }
+    $todosContainer.innerHTML = htmlList.join(' ')
 }
 
 const formSearch = event => {
-    if (event.key === 'Enter') {
-        event.preventDefault()
-        const search = $formSearch.search.value
-        const searchArray = todoList.indexOf(search)
+    event.preventDefault()
+    const searchWord = $formSearch.search.value.toLowerCase()
 
-        if (searchArray > -1) {
-            const newSearchArray = [todoList[searchArray]]
-            console.log(newSearchArray)
-            addTodoListInHTML(newSearchArray)
-        }
-    }
+    const listWordMatch = todoList.filter(item => item.toLowerCase().includes(searchWord))
+    addTodoListInHTML(listWordMatch)
+
 }
 
-$formAddTodo.addEventListener('keypress', createTodoList)
-$formSearch.addEventListener('keypress', formSearch)
+$formAddTodo.addEventListener('submit', addItemToTodoList)
+$formSearch.addEventListener('input', formSearch)
+addTodoListInHTML(todoList)
