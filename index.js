@@ -4,6 +4,18 @@ const $todosContainer = document.querySelector('.todos-container')
 
 const todoList = ["Assistir Breakin Bad", "Planejar aulas", "Fazer exercícios fisicos"]
 
+function addTodoListInHTML(array) {
+    const htmlList = array.map(item => (
+            `<li class="list-group-item">
+                <span>${item}</span>
+                <i class="far fa-trash-alt delete" data-trash="delete"></i>
+            </li>`
+        )
+    )
+    
+    $todosContainer.innerHTML = htmlList.join(' ')
+}
+
 const addItemToTodoList =  event => {
     event.preventDefault()
     const todo = event.target.add.value.trim()
@@ -14,29 +26,21 @@ const addItemToTodoList =  event => {
     event.target.reset()
 }
 
-function removeItemList(event) {
-    const todo = event.target.previousElementSibling.innerHTML
+function removeItemToTodoList(event) {
+    const eventTarget = event.target
 
-    const removeIndex = todoList.indexOf(todo)
-    todoList.splice(removeIndex, 1)
-    
-    addTodoListInHTML(todoList)
+    if (eventTarget.dataset.trash) {
+        
+        const todo = eventTarget.previousElementSibling.innerHTML
+
+        const removeIndex = todoList.indexOf(todo)
+        todoList.splice(removeIndex, 1)
+        
+        addTodoListInHTML(todoList)
+    }
 }
 
-function addTodoListInHTML(array) {
-    const htmlList = array.map(item => (
-            `<li class="list-group-item">
-                <span>${item}</span>
-                <i class="far fa-trash-alt delete"
-                onclick="removeItemList(event)"></i>
-            </li>`
-        )
-    )
-    
-    $todosContainer.innerHTML = htmlList.join(' ')
-}
-
-const formSearch = event => {
+const searchItemInTodoList = event => {
     event.preventDefault()
     const searchWord = $formSearch.search.value.toLowerCase()
 
@@ -46,5 +50,7 @@ const formSearch = event => {
 }
 
 $formAddTodo.addEventListener('submit', addItemToTodoList)
-$formSearch.addEventListener('input', formSearch)
+$formSearch.addEventListener('input', searchItemInTodoList)
+$todosContainer.addEventListener('click', removeItemToTodoList)
+
 addTodoListInHTML(todoList)
