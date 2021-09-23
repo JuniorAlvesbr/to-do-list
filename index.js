@@ -31,7 +31,7 @@ function removeItemToTodoList(event) {
 
     if (eventTarget.dataset.trash) {
 
-        const todo = eventTarget.previousElementSibling.innerHTML
+        const todo = eventTarget.previousElementSibling.textContent
 
         const removeIndex = todoList.indexOf(todo)
         todoList.splice(removeIndex, 1)
